@@ -346,9 +346,9 @@ export async function getEmployeeFiles(
   }
 }
 
-export async function getWhosOut(startDate?: string, endDate?: string): Promise<ToolResponse> {
+export async function getWhosOut(startDate?: string, endDate?: string, all: boolean = true): Promise<ToolResponse> {
   try {
-    const items = await bamboohr.getWhosOut(startDate, endDate);
+    const items = await bamboohr.getWhosOut(startDate, endDate, all);
 
     if (items.length === 0) {
       return {
