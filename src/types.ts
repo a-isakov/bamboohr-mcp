@@ -74,11 +74,6 @@ export const getWhosOutSchema = z.object({
   endDate: dateSchema()
     .optional()
     .describe('End date in YYYY-MM-DD format (defaults to 14 days from start date)'),
-  all: z
-    .boolean()
-    .optional()
-    .default(true)
-    .describe('Whether to return all employees (true) or only from your location (false)'),
 });
 
 export interface ToolResponse {

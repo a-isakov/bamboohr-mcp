@@ -248,9 +248,9 @@ server.tool(
   },
 );
 
-server.tool('getWhosOut', getWhosOutSchema.shape, async ({ startDate, endDate, all }) => {
+server.tool('getWhosOut', getWhosOutSchema.shape, async ({ startDate, endDate }) => {
   try {
-    const result = await tools.getWhosOut(startDate, endDate, all);
+    const result = await tools.getWhosOut(startDate, endDate);
     return {
       content: result.content,
     };

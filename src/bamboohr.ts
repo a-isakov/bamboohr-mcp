@@ -173,12 +173,11 @@ export async function getEmployeeFiles(employeeId: string, categoryId?: string):
   }
 }
 
-export async function getWhosOut(startDate?: string, endDate?: string, all: boolean = true): Promise<any> {
+export async function getWhosOut(startDate?: string, endDate?: string): Promise<any> {
   try {
     const params: any = {};
     if (startDate) params.start = startDate;
     if (endDate) params.end = endDate;
-    if (all) params.option = 'all';
 
     const response = await api.get('/time_off/whos_out', {
       params,
