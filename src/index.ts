@@ -27,9 +27,9 @@ const server = new McpServer({
   version: config.server.version,
 });
 
-server.tool('getEmployees', getEmployeesSchema.shape, async ({ fields, limit, filter }) => {
+server.tool('getEmployees', getEmployeesSchema.shape, async ({ fields }) => {
   try {
-    const result = await tools.getEmployees(fields, limit, filter);
+    const result = await tools.getEmployees(fields);
     return {
       content: result.content,
     };

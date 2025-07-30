@@ -12,13 +12,6 @@ export type Env = z.infer<typeof envSchema>;
 
 export const getEmployeesSchema = z.object({
   fields: z.string().optional().describe('Comma-separated list of fields to include'),
-  limit: z.number().min(1).max(100).optional().default(50),
-  filter: z
-    .object({
-      departmentId: z.string().optional(),
-      status: z.enum(['active', 'inactive', 'all']).optional().default('active'),
-    })
-    .optional(),
 });
 
 export const getEmployeeSchema = z.object({

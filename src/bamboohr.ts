@@ -15,7 +15,7 @@ const api = axios.create({
   },
 });
 
-export async function getEmployees(fields?: string[], filter?: any): Promise<Employee[]> {
+export async function getEmployees(_fields?: string[]): Promise<Employee[]> {
   try {
     const response = await api.get('/employees/directory', {
       headers: {
@@ -23,16 +23,7 @@ export async function getEmployees(fields?: string[], filter?: any): Promise<Emp
       },
     });
 
-    let employees = response.data.employees || [];
-
-    if (filter) {
-      if (filter.departmentId) {
-        employees = employees.filter((emp: any) => emp.department === filter.departmentId);
-      }
-      if (filter.status && filter.status !== 'all') {
-        employees = employees.filter((emp: any) => emp.status === filter.status);
-      }
-    }
+    const employees = response.data.employees || [];
 
     return employees;
   } catch (error) {

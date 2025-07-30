@@ -10,16 +10,12 @@ import {
 
 export async function getEmployees(
   fields?: string,
-  limit?: number,
-  filter?: any,
 ): Promise<ToolResponse> {
   try {
     const fieldArray = parseFields(fields);
-    const employees = await bamboohr.getEmployees(fieldArray, filter);
+    const employees = await bamboohr.getEmployees(fieldArray);
 
-    const limitedEmployees = limit ? employees.slice(0, limit) : employees;
-
-    if (limitedEmployees.length === 0) {
+    if (employees.length === 0) {
       return {
         content: [
           {
@@ -30,7 +26,7 @@ export async function getEmployees(
       };
     }
 
-    const formattedContent = limitedEmployees
+    const formattedContent = employees
       .map((emp) => formatEmployeeInfo(emp))
       .join('\n\n---\n\n');
 
@@ -38,7 +34,7 @@ export async function getEmployees(
       content: [
         {
           type: 'text',
-          text: `Found ${limitedEmployees.length} employee(s):\n\n${formattedContent}`,
+          text: `Found ${employees.length} employee(s):\n\n${formattedContent}`,
         },
       ],
     };
